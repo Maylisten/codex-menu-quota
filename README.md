@@ -23,7 +23,7 @@
 
 ## 安装
 
-从仓库的 [Releases](https://github.com/Maylisten/codex-menu-quota/releases) 页面下载最新 DMG，打开后将“Codex 额度”拖入 Applications 文件夹。
+从仓库的 [Releases](https://github.com/Maylisten/codex-menu-quota/releases) 页面下载最新 DMG，打开后将 `codex-menu-quota` 拖入 Applications 文件夹。
 
 > 在完成 Developer ID 签名和 Apple 公证前，自行构建的版本可能会触发 Gatekeeper 提示。
 

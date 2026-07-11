@@ -14,7 +14,7 @@ VERSION="${VERSION:-$(xcodebuild \
   -configuration Release \
   -showBuildSettings 2>/dev/null | awk '/MARKETING_VERSION =/ { print $3; exit }')}"
 
-DMG_PATH="$OUTPUT_DIR/Codex额度-${VERSION}.dmg"
+DMG_PATH="$OUTPUT_DIR/codex-menu-quota-${VERSION}.dmg"
 APP_SOURCE="$DERIVED_DATA/Build/Products/Release/codex-menu-quota.app"
 STAGING_DIR="$(mktemp -d)"
 
@@ -33,12 +33,12 @@ xcodebuild \
   build
 
 mkdir -p "$OUTPUT_DIR"
-ditto "$APP_SOURCE" "$STAGING_DIR/Codex 额度.app"
+ditto "$APP_SOURCE" "$STAGING_DIR/codex-menu-quota.app"
 ln -s /Applications "$STAGING_DIR/Applications"
 
 echo "Creating DMG…"
 hdiutil create \
-  -volname "Codex 额度" \
+  -volname "codex-menu-quota" \
   -srcfolder "$STAGING_DIR" \
   -format UDZO \
   -ov \
