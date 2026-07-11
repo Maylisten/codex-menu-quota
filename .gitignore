@@ -1,4 +1,5 @@
 .build/
+.tools/
 dist/
 .DS_Store
 xcuserdata/
