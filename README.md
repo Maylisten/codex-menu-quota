@@ -5,6 +5,12 @@
 [![Build](https://github.com/Maylisten/codex-menu-quota/actions/workflows/build.yml/badge.svg)](https://github.com/Maylisten/codex-menu-quota/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## 界面预览
+
+<p align="center">
+  <img src="docs/images/app-overview.png" width="436" alt="Codex Menu Quota 菜单栏与额度详情界面">
+</p>
+
 ## 功能
 
 - 在菜单栏直接展示剩余额度
