@@ -49,6 +49,17 @@ codex-menu-quota.xcodeproj
 
 > 当前项目默认采用本机临时签名。公开分发前需要配置 Developer ID、开启 Hardened Runtime 并完成 Apple 公证。
 
+## 发布 Release
+
+Release 由 Git Tag 自动触发。例如发布 `v1.0.0`：
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+GitHub Actions 会自动构建通用架构 DMG、生成 SHA-256 校验文件，并发布到 GitHub Releases。
+
 ## 隐私
 
 - 额度数据只从本机 Codex 进程读取
