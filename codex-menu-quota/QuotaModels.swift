@@ -16,6 +16,29 @@ nonisolated struct RateLimitSnapshot: Decodable, Sendable {
     let primary: RateLimitWindow?
     let secondary: RateLimitWindow?
     let planType: String?
+
+    var fiveHourWindow: RateLimitWindow? {
+        if let window = windows.first(where: { $0.matchesDuration(minutes: 5 * 60) }) {
+            return window
+        }
+
+        // Older Codex versions may omit the duration. In that legacy payload,
+        // primary and secondary retain their original 5-hour/weekly meanings.
+        return primary?.windowDurationMins == nil ? primary : nil
+    }
+
+    var weeklyWindow: RateLimitWindow? {
+        if let window = windows.first(where: { $0.matchesDuration(minutes: 7 * 24 * 60) }) {
+            return window
+        }
+
+        // Keep the positional fallback only when there is no duration to classify.
+        return secondary?.windowDurationMins == nil ? secondary : nil
+    }
+
+    private var windows: [RateLimitWindow] {
+        [primary, secondary].compactMap { $0 }
+    }
 }
 
 nonisolated struct RateLimitWindow: Decodable, Sendable {
@@ -29,6 +52,12 @@ nonisolated struct RateLimitWindow: Decodable, Sendable {
 
     var resetDate: Date? {
         resetsAt.map { Date(timeIntervalSince1970: TimeInterval($0)) }
+    }
+
+    func matchesDuration(minutes expectedMinutes: Int) -> Bool {
+        guard let windowDurationMins else { return false }
+        let tolerance = Double(expectedMinutes) * 0.05
+        return abs(Double(windowDurationMins - expectedMinutes)) <= tolerance
     }
 }
 

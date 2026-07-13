@@ -46,11 +46,11 @@ final class AppPreferences {
         var parts: [String] = []
         let limits = response.codexLimits
 
-        if showFiveHour, let primary = limits.primary {
-            parts.append("5h \(primary.remainingPercent)%")
+        if showFiveHour, let fiveHour = limits.fiveHourWindow {
+            parts.append("5h \(fiveHour.remainingPercent)%")
         }
-        if showWeekly, let secondary = limits.secondary {
-            parts.append("周 \(secondary.remainingPercent)%")
+        if showWeekly, let weekly = limits.weeklyWindow {
+            parts.append("周 \(weekly.remainingPercent)%")
         }
         if showResetCount, let resets = response.rateLimitResetCredits {
             parts.append("重置 \(resets.availableCount)")

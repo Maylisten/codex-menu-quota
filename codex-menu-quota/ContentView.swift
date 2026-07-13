@@ -108,11 +108,11 @@ struct ContentView: View {
 
     private func usageCard(_ limits: RateLimitSnapshot) -> some View {
         HStack(spacing: 12) {
-            if let primary = limits.primary {
-                quotaCard(title: "5 小时额度", window: primary, resetFormat: .time)
+            if let fiveHour = limits.fiveHourWindow {
+                quotaCard(title: "5 小时额度", window: fiveHour, resetFormat: .time)
             }
-            if let secondary = limits.secondary {
-                quotaCard(title: "每周额度", window: secondary, resetFormat: .date)
+            if let weekly = limits.weeklyWindow {
+                quotaCard(title: "每周额度", window: weekly, resetFormat: .date)
             }
         }
     }
